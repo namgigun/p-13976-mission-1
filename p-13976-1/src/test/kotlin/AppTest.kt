@@ -8,13 +8,13 @@ import java.io.File
 class AppTest {
 
     // 테스트 실행후, 모든 테스트 파일 삭제
-    @AfterEach
-    fun cleanUp() {
-        val dir = File("db/wiseSaying")
-        if (dir.exists()) {
-            dir.deleteRecursively()
-        }
-    }
+//    @AfterEach
+//    fun cleanUp() {
+//        val dir = File("db/wiseSaying")
+//        if (dir.exists()) {
+//            dir.deleteRecursively()
+//        }
+//    }
 
    @Test
    @DisplayName("종료")
