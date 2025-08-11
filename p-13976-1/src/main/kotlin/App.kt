@@ -1,3 +1,5 @@
+import java.util.StringTokenizer
+
 class App {
     val wiseSayings = mutableListOf<WiseSaying>()
     var lastId = 1
@@ -30,6 +32,21 @@ class App {
                 for (wiseSaying in wiseSayings.reversed()) {
                     println("${wiseSaying.id} / ${wiseSaying.writer} / ${wiseSaying.sentence}")
                 }
+            }
+
+            else if(input.startsWith("삭제")) {
+                val deleteId = input.substringAfter("=", "-1").toInt()
+                var isDelete = false
+
+                for(wiseSaying in wiseSayings) {
+                    if(wiseSaying.id == deleteId) {
+                        isDelete = true
+                        wiseSayings.remove(wiseSaying)
+                    }
+                }
+
+                val msg = if(isDelete) "${deleteId}번 명언이 삭제되었습니다." else "${deleteId}번 명언은 존재하지 않습니다."
+                println(msg)
             }
         }
     }
