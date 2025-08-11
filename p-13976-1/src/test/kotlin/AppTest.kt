@@ -41,4 +41,23 @@ class AppTest {
       assertThat(result).contains("작가 :")
       assertThat(result).contains("1번 명언이 등록되었습니다.")
    }
+
+   @Test
+   @DisplayName("등록할때 마다 생성되는 명언번호가 증가")
+   fun t4() {
+      val result = TestRunner.run("""
+         등록
+         현재를 사랑하라
+         작자미상
+         등록
+         현재를 사랑하라
+         작자미상
+         종료
+      """)
+
+      assertThat(result).contains("명언 :")
+      assertThat(result).contains("작가 :")
+      assertThat(result).contains("1번 명언이 등록되었습니다.")
+      assertThat(result).contains("2번 명언이 등록되었습니다.")
+   }
 }
