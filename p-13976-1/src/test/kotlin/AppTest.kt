@@ -96,4 +96,24 @@ class AppTest {
 
         assertThat(result).contains("1번 명언이 삭제되었습니다.")
     }
+
+    @Test
+    @DisplayName("존재하지 않는 명언삭제에 대한 예외처리")
+    fun t7() {
+        val result = TestRunner.run("""
+            등록
+            현재를 사랑하라.
+            작자미상
+            등록
+            과거에 집착하지 마라.
+            작자미상
+            목록
+            삭제?id=1
+            삭제?id=1
+            종료
+        """)
+
+        assertThat(result).contains("1번 명언이 삭제되었습니다.")
+        assertThat(result).contains("1번 명언은 존재하지 않습니다.")
+    }
 }
