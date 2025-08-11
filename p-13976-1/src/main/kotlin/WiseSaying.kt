@@ -1,1 +1,0 @@
-class WiseSaying(val id:Int, val sentence:String, val writer: String) {}
