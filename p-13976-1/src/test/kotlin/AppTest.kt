@@ -1,10 +1,9 @@
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 import org.junit.jupiter.api.DisplayName
 
-class MainKtTest {
+class AppTest {
 
    @Test
    @DisplayName("종료")
@@ -17,6 +16,20 @@ class MainKtTest {
    @Test
    @DisplayName("등록")
    fun t2() {
+      val result = TestRunner.run("""
+         등록
+         현재를 사랑하라
+         작자미상
+         종료
+      """)
+
+      assertThat(result).contains("명언 :")
+      assertThat(result).contains("작가 :")
+   }
+
+   @Test
+   @DisplayName("등록시 생성된 명언번호 노출")
+   fun t3() {
       val result = TestRunner.run("""
          등록
          현재를 사랑하라
