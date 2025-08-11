@@ -61,5 +61,21 @@ class AppTest {
       assertThat(result).contains("2번 명언이 등록되었습니다.")
    }
 
+    @Test
+    @DisplayName("목록")
+    fun t5() {
+        val result = TestRunner.run("""
+            등록
+            현재를 사랑하라.
+            작자미상
+            등록
+            과거에 집착하지 마라.
+            작자미상
+            목록
+            종료
+        """)
 
+        assertThat(result).contains("2 / 작자미상 / 과거에 집착하지 마라.")
+        assertThat(result).contains("1 / 작자미상 / 현재를 사랑하라.")
+    }
 }
