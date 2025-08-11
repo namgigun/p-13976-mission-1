@@ -60,4 +60,6 @@ class AppTest {
       assertThat(result).contains("1번 명언이 등록되었습니다.")
       assertThat(result).contains("2번 명언이 등록되었습니다.")
    }
+
+
 }

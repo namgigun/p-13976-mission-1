@@ -1,4 +1,5 @@
 class App {
+    val wiseSayings = mutableListOf<WiseSaying>()
     fun run() {
         println("== 명언 앱 ==")
 
@@ -18,7 +19,8 @@ class App {
                 print("작가 : ")
                 val writer = readln()
 
-                println("1번 명언이 등록되었습니다.")
+                wiseSayings.add(WiseSaying(sentence, writer))
+                println("${wiseSayings.size}번 명언이 등록되었습니다.")
             }
         }
     }

@@ -1,3 +1,1 @@
-class WiseSaying {
-
-}
+class WiseSaying(val sentence:String, val writer: String) {}
