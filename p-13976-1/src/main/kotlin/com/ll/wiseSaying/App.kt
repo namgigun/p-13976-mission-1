@@ -2,6 +2,7 @@ package com.ll.wiseSaying
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.ll.global.Rq.Rq
 import java.io.File
 
 class App {
@@ -10,7 +11,7 @@ class App {
 //    val gson = Gson()
 //    var file = File(dir, "lastId.txt")
 //    var jsonString = ""
-    val wiseSayingController = WiseSayingController()
+    private val wiseSayingController = WiseSayingController()
     fun run() {
         println("== 명언 앱 ==")
 
@@ -35,6 +36,7 @@ class App {
             print("명령) ")
 
             val input = readlnOrNull()!!.trim()
+            val rq = Rq(input)
 
             if(input.equals("종료")) {
                 println("프로그램을 종료합니다.");
