@@ -1,6 +1,6 @@
 package com.ll.wiseSaying
 
-import com.ll.global.Rq.Rq
+import com.ll.global.dto.Page
 
 class WiseSayingService {
     private val wiseSayingRepository = WiseSayingRepository()
@@ -8,27 +8,28 @@ class WiseSayingService {
         return wiseSayingRepository.save(sentence, writer)
     }
 
-    fun getWiseSayings(rq: Rq): MutableList<WiseSaying> {
-        val wiseSayings = wiseSayingRepository.findAll()
-        val keywordType = rq.getKeywordType()
-        val keyword = rq.getKeyword()
+    fun getWiseSayings(
+        keywordType: String,
+        keyword: String,
+        itemsPerPage: Int,
+        pageNo: Int
+    ): Page {
+        return wiseSayingRepository.findByKeywordPaged(
+            keywordType,
+            keyword,
+            itemsPerPage,
+            pageNo,
+        )
+    }
 
-        if(keywordType == null || keyword == null) {
-            return wiseSayings
-        }
-
-        val ret = mutableListOf<WiseSaying>()
-        for(wiseSaying in wiseSayings) {
-            if(keywordType.equals("author") && wiseSaying.writer.contains(keyword)) {
-                ret.add(wiseSaying)
-            }
-
-            if(keywordType.equals("content") && wiseSaying.sentence.contains(keyword)) {
-                ret.add(wiseSaying)
-            }
-        }
-
-        return ret
+    fun getWiseSayings(
+        itemsPerPage: Int,
+        pageNo: Int
+    ) : Page {
+        return wiseSayingRepository.findByAllPaged(
+            itemsPerPage,
+            pageNo
+        )
     }
 
     fun remove(id: Int): String {

@@ -18,14 +18,18 @@ class Rq(input: String) {
     }
 
     fun getAction(): String? {
-        return params.get("action")
+        return params["action"]
     }
 
-    fun getKeywordType(): String? {
-        return params.get("keywordType")
+    fun getKeywordType(): String {
+        return params["keywordType"] ?:"content"
     }
 
-    fun getKeyword(): String? {
-        return params.get("keyword")
+    fun getKeyword(): String {
+        return params["keyword"] ?: ""
+    }
+
+    fun getPageToInt(): Int {
+        return params["page"]?.toInt() ?: 1
     }
 }

@@ -1,5 +1,8 @@
 package com.ll.wiseSaying
 
+import com.ll.global.dto.Page
+import kotlin.math.ceil
+
 class WiseSayingRepository {
     private val wiseSayings = mutableListOf<WiseSaying>()
     private var lastId = 1
@@ -11,8 +14,8 @@ class WiseSayingRepository {
         return wiseSaying
     }
 
-    fun findAll(): MutableList<WiseSaying> {
-        return wiseSayings
+    fun findAll() {
+        return wiseSayings.reverse()
     }
 
     fun delete(deleteId: Int): Boolean {
@@ -36,5 +39,41 @@ class WiseSayingRepository {
         }
 
         return null
+    }
+
+    fun findByKeywordPaged(
+        keywordType: String,
+        keyword: String,
+        itemsPerPage: Int,
+        pageNo: Int
+    ): Page {
+        val searchData = mutableListOf<WiseSaying>()
+
+        for (wiseSaying in wiseSayings.reversed()) {
+            if (keywordType.equals("author") && wiseSaying.writer.contains(keyword)) {
+                searchData.add(wiseSaying)
+            }
+
+            if (keywordType.equals("content") && wiseSaying.sentence.contains(keyword)) {
+                searchData.add(wiseSaying)
+            }
+        }
+
+        // 페이징 처리
+        val start = itemsPerPage * (pageNo - 1)
+        val end = itemsPerPage * pageNo - 1
+
+        val ret = Page(searchData.size / itemsPerPage, searchData.subList(start, end))
+
+        return ret
+    }
+
+    fun findByAllPaged(itemsPerPage: Int, pageNo: Int): Page {
+        val start = itemsPerPage * (pageNo - 1)
+        val end = itemsPerPage * pageNo - 1
+
+        val ret = Page(wiseSayings.size / itemsPerPage, wiseSayings.subList(start, end))
+
+        return ret
     }
 }

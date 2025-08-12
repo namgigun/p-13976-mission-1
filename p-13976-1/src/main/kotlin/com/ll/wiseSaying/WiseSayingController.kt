@@ -16,20 +16,39 @@ class WiseSayingController {
     }
 
     fun readWiseSayings(rq: Rq) {
-        if(rq.getKeywordType() != null && rq.getKeyword() != null) {
+        val keywordType = rq.getKeywordType()
+        val keyword = rq.getKeyword()
+
+        if(keyword.isNotBlank()) {
             println("----------------------")
-            println("검색타입 : ${rq.getKeywordType()}")
-            println("검색어 : ${rq.getKeyword()}")
+            println("검색타입 : $keywordType")
+            println("검색어 : $keyword")
             println("----------------------")
         }
 
-        val wiseSayings = wiseSayingService.getWiseSayings(rq)
+        val pageNo = rq.getPageToInt()
+        val itemsPerPage = 5
+
+        val wiseSayings = if (keyword.isNotBlank())
+            wiseSayingService.getWiseSayings(keywordType, keyword, itemsPerPage, pageNo)
+        else
+            wiseSayingService.getWiseSayings(itemsPerPage, pageNo)
 
         println("번호 / 작가 / 명언")
         println("----------------------")
-        for (wiseSaying in wiseSayings.reversed()) {
+        for (wiseSaying in wiseSayings.data) {
             println("${wiseSaying.id} / ${wiseSaying.writer} / ${wiseSaying.sentence}")
         }
+        println("----------------------")
+
+        print("페이지 : ")
+
+        val pageMenu = (1..wiseSayings.totalPages)
+            .joinToString(" ") {
+                if (it == pageNo) "[$it]" else it.toString()
+            }
+
+        println(pageMenu)
     }
 
     fun removeWiseSaying(id: Int) {
