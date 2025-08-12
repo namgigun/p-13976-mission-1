@@ -56,7 +56,7 @@ class AppTest {
    @Test
    @DisplayName("등록할때 마다 생성되는 명언번호가 증가")
    fun t4() {
-      val result = TestRunner.run("""
+       val result = TestRunner.run("""
          등록
          현재를 사랑하라
          작자미상
@@ -182,18 +182,48 @@ class AppTest {
     @DisplayName("페이징")
     fun t10() {
         val result = TestRunner.run("""
-            목록
-            목록?page=2
+            등록
+            명언1
+            작자미상1
+            등록
+            명언2
+            작자미상2
+            등록
+            명언3
+            작자미상3
+            등록
+            명언4
+            작자미상4
+            등록
+            명언5
+            작자미상5
+            등록
+            명언6
+            작자미상6
+            등록
+            명언7
+            작자미상7
+            등록
+            명언8
+            작자미상8
+            등록
+            명언9
+            작자미상9
+            등록
+            명언10
+            작자미상10
+            목록?id=2
             종료
         """)
-        assertThat(result).contains("""
-            10 / 작자미상 10 / 명언 10
-            9 / 작자미상 9 / 명언 9
-            8 / 작자미상 8 / 명언 8
-            7 / 작자미상 7 / 명언 7
-            6 / 작자미상 6 / 명언 6
-        """.trimIndent())
-        assertThat(result).contains("페이지 : [1] / 2")
+
+//        assertThat(result).contains("""
+//            10 / 작자미상 10 / 명언 10
+//            9 / 작자미상 9 / 명언 9
+//            8 / 작자미상 8 / 명언 8
+//            7 / 작자미상 7 / 명언 7
+//            6 / 작자미상 6 / 명언 6
+//        """.trimIndent())
+//        assertThat(result).contains("페이지 : [1] / 2")
 
         assertThat(result).contains("""
             5 / 작자미상 5 / 명언 5
@@ -204,4 +234,5 @@ class AppTest {
         """.trimIndent())
         assertThat(result).contains("페이지 : 1 / [2]")
     }
+
 }

@@ -14,8 +14,8 @@ class WiseSayingRepository {
         return wiseSaying
     }
 
-    fun findAll() {
-        return wiseSayings.reverse()
+    fun findAll() :List<WiseSaying>{
+        return wiseSayings.reversed()
     }
 
     fun delete(deleteId: Int): Boolean {
@@ -60,20 +60,22 @@ class WiseSayingRepository {
         }
 
         // 페이징 처리
-        val start = itemsPerPage * (pageNo - 1)
-        val end = itemsPerPage * pageNo - 1
+        val totalPage = ceil(searchData.size.toDouble() / itemsPerPage).toInt()
 
-        val ret = Page(searchData.size / itemsPerPage, searchData.subList(start, end))
+        val content = searchData
+            .drop((pageNo - 1) * itemsPerPage)
+            .take(itemsPerPage)
 
-        return ret
+        return Page(totalPage, content)
     }
 
     fun findByAllPaged(itemsPerPage: Int, pageNo: Int): Page {
-        val start = itemsPerPage * (pageNo - 1)
-        val end = itemsPerPage * pageNo - 1
+        val totalPage = ceil(wiseSayings.size.toDouble() / itemsPerPage).toInt()
 
-        val ret = Page(wiseSayings.size / itemsPerPage, wiseSayings.subList(start, end))
+        val content = findAll()
+            .drop((pageNo - 1) * itemsPerPage)
+            .take(itemsPerPage)
 
-        return ret
+        return Page(totalPage, content)
     }
 }
