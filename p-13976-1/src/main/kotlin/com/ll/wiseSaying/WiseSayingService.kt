@@ -17,7 +17,7 @@ class WiseSayingService {
         return msg
     }
 
-    fun checkCanUpdate(id: Int): WiseSaying? {
+    fun getWiseSaying(id: Int): WiseSaying? {
         return wiseSayingRepository.findById(id)
     }
 }

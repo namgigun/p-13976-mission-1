@@ -29,7 +29,7 @@ class WiseSayingController {
     }
 
     fun updateWiseSaying(id: Int) {
-        val wiseSaying = wiseSayingService.checkCanUpdate(id);
+        val wiseSaying = wiseSayingService.getWiseSaying(id);
 
         if(wiseSaying == null) {
             println("${id}번 명언은 존재하지 않습니다.")

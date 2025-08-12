@@ -151,4 +151,31 @@ class AppTest {
 
         assertThat(result).contains("2 / 홍길동 / 현재와 자신을 사랑하라.")
     }
+
+    @Test
+    @DisplayName("검색")
+    fun t9() {
+        val result = TestRunner.run("""
+            등록
+            현재를 사랑하라.
+            작자미상
+            등록
+            과거에 집착하지 마라.
+            작자미상
+            목록
+            목록?keywordType=content&keyword=과거
+            목록?keywordType=author&keyword=작자
+            종료
+        """)
+
+        assertThat(result).contains("검색타입 : content")
+        assertThat(result).contains("검색어 : 과거")
+        assertThat(result).contains("2 / 작자미상 / 과거에 집착하지 마라.")
+
+        assertThat(result).contains("검색타입 : author")
+        assertThat(result).contains("검색어 : 작자")
+        assertThat(result).contains("2 / 작자미상 / 과거에 집착하지 마라.")
+        assertThat(result).contains("1 / 작자미상 / 현재를 사랑하라.")
+
+    }
 }
