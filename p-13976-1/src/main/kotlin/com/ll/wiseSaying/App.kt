@@ -36,28 +36,29 @@ class App {
             print("명령) ")
 
             val input = readlnOrNull()!!.trim()
+
             val rq = Rq(input)
 
-            if(input.equals("종료")) {
+            if(rq.getAction().equals("종료")) {
                 println("프로그램을 종료합니다.");
                 break
             }
 
-            else if(input.equals("등록")) {
+            else if(rq.getAction().equals("등록")) {
                 wiseSayingController.writeWiseSaying()
             }
 
-            else if(input.equals("목록")) {
-                wiseSayingController.readWiseSayings()
+            else if(rq.getAction().equals("목록")) {
+                wiseSayingController.readWiseSayings(rq)
             }
 
-            else if(input.startsWith("삭제")) {
+            else if(rq.getAction().equals("삭제")) {
                 val id = input.substringAfter("=", "-1").toInt()
 
                 wiseSayingController.removeWiseSaying(id)
             }
 
-            else if(input.startsWith("수정")) {
+            else if(rq.getAction().equals("수정")) {
                 val id = input.substringAfter("=", "-1").toInt()
                 wiseSayingController.updateWiseSaying(id)
             }

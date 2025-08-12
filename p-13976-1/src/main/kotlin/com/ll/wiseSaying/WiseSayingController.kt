@@ -1,5 +1,7 @@
 package com.ll.wiseSaying
 
+import com.ll.global.Rq.Rq
+
 class WiseSayingController {
     private val wiseSayingService = WiseSayingService()
 
@@ -13,8 +15,15 @@ class WiseSayingController {
         println("${wiseSaying.id}번 명언이 등록되었습니다.")
     }
 
-    fun readWiseSayings() {
-        val wiseSayings = wiseSayingService.getWiseSayings();
+    fun readWiseSayings(rq: Rq) {
+        if(rq.getKeywordType() != null && rq.getKeyword() != null) {
+            println("----------------------")
+            println("검색타입 : ${rq.getKeywordType()}")
+            println("검색어 : ${rq.getKeyword()}")
+            println("----------------------")
+        }
+
+        val wiseSayings = wiseSayingService.getWiseSayings(rq)
 
         println("번호 / 작가 / 명언")
         println("----------------------")

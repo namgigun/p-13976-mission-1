@@ -1,6 +1,6 @@
 package com.ll.global.Rq
 
-class Rq(val input: String) {
+class Rq(input: String) {
     private val params = mutableMapOf<String, String>()
 
     init {
@@ -15,5 +15,17 @@ class Rq(val input: String) {
                 }
             }
         }
+    }
+
+    fun getAction(): String? {
+        return params.get("action")
+    }
+
+    fun getKeywordType(): String? {
+        return params.get("keywordType")
+    }
+
+    fun getKeyword(): String? {
+        return params.get("keyword")
     }
 }
