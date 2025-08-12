@@ -3,7 +3,7 @@ package com.ll.wiseSaying
 import com.ll.global.dto.Page
 
 class WiseSayingService {
-    private val wiseSayingRepository = WiseSayingRepository()
+    private val wiseSayingRepository = WiseSayingFileRepository()
     fun write(sentence: String, writer: String): WiseSaying {
         return wiseSayingRepository.save(sentence, writer)
     }
@@ -41,5 +41,9 @@ class WiseSayingService {
 
     fun getWiseSaying(id: Int): WiseSaying? {
         return wiseSayingRepository.findById(id)
+    }
+
+    fun update(wiseSaying: WiseSaying) {
+        wiseSayingRepository.save(wiseSaying);
     }
 }

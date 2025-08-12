@@ -62,6 +62,14 @@ class App {
                 val id = input.substringAfter("=", "-1").toInt()
                 wiseSayingController.updateWiseSaying(id)
             }
+
+            else if(rq.getAction().equals("빌드")) {
+
+            }
+
+            else {
+                println("해당 작업은 존재하지 않습니다.")
+            }
         }
 
         // 파일 저장 코드

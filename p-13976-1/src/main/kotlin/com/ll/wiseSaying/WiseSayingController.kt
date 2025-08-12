@@ -71,5 +71,7 @@ class WiseSayingController {
         println("작가(기존) : ${wiseSaying.writer}")
         print("명언 : ")
         wiseSaying.writer = readln()
+
+        wiseSayingService.update(wiseSaying)
     }
 }

@@ -8,13 +8,13 @@ import java.io.File
 class AppTest {
 
     // 테스트 실행후, 모든 테스트 파일 삭제
-//    @AfterEach
-//    fun cleanUp() {
-//        val dir = File("db/wiseSaying")
-//        if (dir.exists()) {
-//            dir.deleteRecursively()
-//        }
-//    }
+    @AfterEach
+    fun cleanUp() {
+        val dir = File("db/wiseSaying")
+        if (dir.exists()) {
+            dir.deleteRecursively()
+        }
+    }
 
    @Test
    @DisplayName("종료")
@@ -183,47 +183,48 @@ class AppTest {
     fun t10() {
         val result = TestRunner.run("""
             등록
-            명언1
-            작자미상1
+            명언 1
+            작자미상 1
             등록
-            명언2
-            작자미상2
+            명언 2
+            작자미상 2
             등록
-            명언3
-            작자미상3
+            명언 3
+            작자미상 3
             등록
-            명언4
-            작자미상4
+            명언 4
+            작자미상 4
             등록
-            명언5
-            작자미상5
+            명언 5
+            작자미상 5
             등록
-            명언6
-            작자미상6
+            명언 6
+            작자미상 6
             등록
-            명언7
-            작자미상7
+            명언 7
+            작자미상 7
             등록
-            명언8
-            작자미상8
+            명언 8
+            작자미상 8
             등록
-            명언9
-            작자미상9
+            명언 9
+            작자미상 9
             등록
-            명언10
-            작자미상10
-            목록?id=2
+            명언 10
+            작자미상 10
+            목록
+            목록?page=2
             종료
         """)
 
-//        assertThat(result).contains("""
-//            10 / 작자미상 10 / 명언 10
-//            9 / 작자미상 9 / 명언 9
-//            8 / 작자미상 8 / 명언 8
-//            7 / 작자미상 7 / 명언 7
-//            6 / 작자미상 6 / 명언 6
-//        """.trimIndent())
-//        assertThat(result).contains("페이지 : [1] / 2")
+        assertThat(result).contains("""
+            10 / 작자미상 10 / 명언 10
+            9 / 작자미상 9 / 명언 9
+            8 / 작자미상 8 / 명언 8
+            7 / 작자미상 7 / 명언 7
+            6 / 작자미상 6 / 명언 6
+        """.trimIndent())
+        assertThat(result).contains("페이지 : [1] 2")
 
         assertThat(result).contains("""
             5 / 작자미상 5 / 명언 5
@@ -232,7 +233,7 @@ class AppTest {
             2 / 작자미상 2 / 명언 2
             1 / 작자미상 1 / 명언 1
         """.trimIndent())
-        assertThat(result).contains("페이지 : 1 / [2]")
+        assertThat(result).contains("페이지 : 1 [2]")
     }
 
 }
