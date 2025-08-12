@@ -1,8 +1,6 @@
 package com.ll.wiseSaying
 
 import com.ll.global.dto.Page
-import java.io.File
-import kotlin.math.ceil
 
 interface WiseSayingRepository {
     fun save(sentence: String, writer: String): WiseSaying
@@ -23,4 +21,5 @@ interface WiseSayingRepository {
     ): Page
 
     fun findByAllPaged(itemsPerPage: Int, pageNo: Int): Page
+    fun saveAllToDataJson()
 }

@@ -74,4 +74,8 @@ class WiseSayingController {
 
         wiseSayingService.update(wiseSaying)
     }
+
+    fun build() {
+        wiseSayingService.build()
+    }
 }

@@ -107,6 +107,12 @@ class WiseSayingFileRepository : WiseSayingRepository {
         return Page(totalPage, content)
     }
 
+    override fun saveAllToDataJson() {
+        val allWiseSayings = findAll()
+        val file = File("db/wiseSaying/data.json")
+        file.writeText(gson.toJson(allWiseSayings))
+    }
+
 
     private fun getFilePath(id: Int): String = "db/wiseSaying/$id.json"
 

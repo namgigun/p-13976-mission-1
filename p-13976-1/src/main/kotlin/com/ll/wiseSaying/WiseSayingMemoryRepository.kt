@@ -82,4 +82,8 @@ class WiseSayingMemoryRepository : WiseSayingRepository {
 
         return Page(totalPage, content)
     }
+
+    override fun saveAllToDataJson() {
+        TODO("Not yet implemented")
+    }
 }

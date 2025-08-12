@@ -44,6 +44,10 @@ class WiseSayingService {
     }
 
     fun update(wiseSaying: WiseSaying) {
-        wiseSayingRepository.save(wiseSaying);
+        wiseSayingRepository.save(wiseSaying)
+    }
+
+    fun build() {
+        wiseSayingRepository.saveAllToDataJson()
     }
 }
