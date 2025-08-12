@@ -176,6 +176,32 @@ class AppTest {
         assertThat(result).contains("검색어 : 작자")
         assertThat(result).contains("2 / 작자미상 / 과거에 집착하지 마라.")
         assertThat(result).contains("1 / 작자미상 / 현재를 사랑하라.")
+    }
 
+    @Test
+    @DisplayName("페이징")
+    fun t10() {
+        val result = TestRunner.run("""
+            목록
+            목록?page=2
+            종료
+        """)
+        assertThat(result).contains("""
+            10 / 작자미상 10 / 명언 10
+            9 / 작자미상 9 / 명언 9
+            8 / 작자미상 8 / 명언 8
+            7 / 작자미상 7 / 명언 7
+            6 / 작자미상 6 / 명언 6
+        """.trimIndent())
+        assertThat(result).contains("페이지 : [1] / 2")
+
+        assertThat(result).contains("""
+            5 / 작자미상 5 / 명언 5
+            4 / 작자미상 4 / 명언 4
+            3 / 작자미상 3 / 명언 3
+            2 / 작자미상 2 / 명언 2
+            1 / 작자미상 1 / 명언 1
+        """.trimIndent())
+        assertThat(result).contains("페이지 : 1 / [2]")
     }
 }
